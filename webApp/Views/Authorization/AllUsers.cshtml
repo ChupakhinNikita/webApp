@@ -1,0 +1,16 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using webApp.Models
+@model IEnumerable<User>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div>
+    @{
+        <p>Id Логин Пароль Роль</p>
+        foreach (User u in Model)
+        {
+            <p>@u.IdUser @u.Login @u.Password @u.Role</p>
+        }
+    }
+</div>

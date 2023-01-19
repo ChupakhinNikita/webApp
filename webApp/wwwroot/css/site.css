@@ -1,0 +1,95 @@
+html {
+    background-color: #D8E6F3;
+    background-blend-mode: overlay;
+    font-family: 'Roboto', sans-serif;
+}
+
+.registration-cssave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    heighttext-align: 100%; 
+}
+
+.container-fluid {
+}
+
+body {
+    background-color: transparent;
+}
+
+.info-label {
+    font-size: 18px;
+}
+
+.registration-cssave {
+    padding: 50px 0;
+}
+
+.registration-cssave form {
+    max-width: 800px;
+    padding: 50px 70px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: #96BFE8;
+}
+
+.registration-cssave form h3 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: normal;
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+.registration-cssave .item {
+    border-radius: 10px;
+    margin-bottom: 28px;
+    padding: 10px 15px;
+    font-size: 19px;
+}
+
+.form-control {
+    width: 300px;
+}
+
+.info-label {
+    margin: 0px 0px 10px 3px;
+}
+
+.form-group {
+    text-align: center;
+}
+
+.registration-cssave .create-account {
+    border-radius: 7px;
+    padding: 10px 35px;
+    font-size: 17px;
+    background-color: #263045;
+    border: none;
+    color: white;
+}
+
+@media (max-width: 576px) {
+    html {
+        background-color: #96BFE8;
+    }
+
+    .registration-cssave form {
+        max-width: 800px;
+        padding: 50px 20px;
+        background-color: #96BFE8;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .registration-cssave .create-account {
+        border-radius: 7px;
+        padding: 10px 50px;
+        font-size: 17px;
+        background-color: #263045;
+        border: none;
+        color: white;
+    }
+}
