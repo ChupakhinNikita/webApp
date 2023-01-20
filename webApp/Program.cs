@@ -62,45 +62,6 @@ app.MapGet("/logout", async (HttpContext context) =>
 
 app.Map("/login", [Authorize] () => $"Hello World!");
 
-
-app.MapGet("/Authorization/AllUsers/api/users", async (UsersContext db) => await db.Users.ToListAsync());
-
-app.MapGet("/Authorization/AllUsers/api/users/{id:int}", async (int id, UsersContext db) =>
-{
-    User? user = await db.Users.FirstOrDefaultAsync(u => u.IdUser == id);
-    if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
-    return Results.Json(user);
-});
-
-app.MapDelete("/Authorization/AllUsers/api/users/{id:int}", async (int id, UsersContext db) =>
-{
-    User? user = await db.Users.FirstOrDefaultAsync(u => u.IdUser == id);
-    if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
-    db.Users.Remove(user);
-    await db.SaveChangesAsync();
-    return Results.Json(user);
-});
-
-app.MapPost("/Authorization/AllUsers/api/users", async (User user, UsersContext db) =>
-{
-    // добавляем пользователя в массив
-    await db.Users.AddAsync(user);
-    await db.SaveChangesAsync();
-    return user;
-});
-
-app.MapPut("/Authorization/AllUsers/api/users", async (User userData, UsersContext db) =>
-{
-    var user = await db.Users.FirstOrDefaultAsync(u => u.IdUser == userData.IdUser);
-    if (user == null) return Results.NotFound(new { message = "Пользователь не найден" });
-    user.Login = userData.Login;
-    user.Password = userData.Password;
-    user.Role = userData.Role;
-    await db.SaveChangesAsync();
-    return Results.Json(user);
-});
-
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
