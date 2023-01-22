@@ -18,49 +18,106 @@ builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql(connect
 
 // Подключение аутентификации с помощью куки
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/");
-builder.Services.AddAuthorization();
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Authorization/Authorization";
+        options.AccessDeniedPath = "/Authorization/Authorization";
+    });
+
+// Подключение авторизации
+builder.Services.AddAuthorization(opts => {
+
+    opts.AddPolicy("OnlyForAdmin", policy => {
+        policy.RequireClaim(ClaimTypes.Role, "Администратор");
+    });
+    opts.AddPolicy("OnlyForTeacher", policy => {
+        policy.RequireClaim(ClaimTypes.Role, "Преподователь");
+    });
+    opts.AddPolicy("OnlyForStudent", policy => {
+        policy.RequireClaim(ClaimTypes.Role, "Студент");
+    });
+});
 
 var app = builder.Build();
-
-app.UseAuthentication();   // Добавление middleware аутентификации 
-app.UseAuthorization();   // Добавление middleware авторизации 
 
 app.MapPost("/", async (string? returnUrl, HttpContext context, UsersContext db) =>
 {
     // получаем из формы login и пароль
     var form = context.Request.Form;
-    // если login и/или пароль не установлены, посылаем статусный код ошибки 400
-    if (!form.ContainsKey("login") || !form.ContainsKey("password"))
-        return Results.BadRequest("Логин и/или пароль не установлены");
 
     string login = form["login"];
-    string password = form["password"];
+    string password = form["Password"];
 
     // находим пользователя 
     User? user = db.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
 
+    /*Обработать*/
     // если пользователь не найден, отправляем статусный код 401
     if (user is null) return Results.Unauthorized();
+    /*Обработать*/
 
     var claims = new List<Claim> { 
         new Claim(ClaimTypes.Name, user.Login),
         new Claim(ClaimTypes.Role, user.Role)
     };
     // создаем объект ClaimsIdentity
-    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-    // установка аутентификационных куки
-    await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-    return Results.Redirect(returnUrl ?? "/Authorization/AllUsers");
+    var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+    await context.SignInAsync(claimsPrincipal); // установка аутентификационных куки
+
+    if (user.Role == "Администратор")
+    {
+        return Results.Redirect(returnUrl ?? "/Authorization/Authorization/admin");
+    }
+    else if (user.Role == "Студент")
+    {
+        return Results.Redirect(returnUrl ?? "/Authorization/Authorization/student");
+    }
+    else if (user.Role == "Преподователь")
+    {
+        return Results.Redirect(returnUrl ?? "/Authorization/Authorization/teacher");
+    }
+    else 
+    {
+        return Results.Redirect(returnUrl ?? $"/Authorization/Authorization/login");
+    }
+});
+
+// доступ только для Студентов
+app.Map("/Authorization/Authorization/student", [Authorize(Policy = "OnlyForStudent")] (HttpContext context) =>
+{
+    var login = context.User.FindFirst(ClaimTypes.Name);
+    var role = context.User.FindFirst(ClaimTypes.Role);
+    return $"Логин: {login?.Value}\nРоль: {role?.Value}\nYou are student";
+});
+// доступ только для Администаторов
+app.Map("/Authorization/Authorization/admin", [Authorize(Policy = "OnlyForAdmin")] (HttpContext context) =>
+{
+    var login = context.User.FindFirst(ClaimTypes.Name);
+    var role = context.User.FindFirst(ClaimTypes.Role);
+    return $"Логин: {login?.Value}\nРоль: {role?.Value}\nYou are Admin";
+});
+
+// доступ только для Преподователей
+app.Map("/Authorization/Authorization/teacher", [Authorize(Policy = "OnlyForTeacher")] (HttpContext context) =>
+{
+    var login = context.User.FindFirst(ClaimTypes.Name);
+    var role = context.User.FindFirst(ClaimTypes.Role);
+    return $"Логин: {login?.Value}\nРоль: {role?.Value}\nYou are Teacher";
+});
+
+app.Map("/Authorization/Authorization/login", [Authorize] (HttpContext context) =>
+{
+    var login = context.User.FindFirst(ClaimTypes.Name);
+    var role = context.User.FindFirst(ClaimTypes.Role);
+    return $"Логин: {login?.Value}\nРоль: {role?.Value}";
 });
 
 app.MapGet("/logout", async (HttpContext context) =>
 {
     await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    return Results.Redirect("/");
+    return "Данные удалены";
 });
-
-app.Map("/login", [Authorize] () => $"Hello World!");
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -73,7 +130,10 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+/*app.UseRouting();*/
+
+app.UseAuthentication();   // Добавление middleware аутентификации 
+app.UseAuthorization();   // Добавление middleware авторизации 
 
 app.MapControllerRoute(
     name: "default",

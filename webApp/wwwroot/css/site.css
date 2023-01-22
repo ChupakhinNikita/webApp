@@ -13,6 +13,20 @@ html {
     heighttext-align: 100%; 
 }
 
+td, tr {
+    font-size: 17px;
+}
+
+a {
+    font-size: 17px;
+    color: #6A5ACD;
+    text-decoration: blink;
+}
+
+.form-control {
+    margin: 0px 0px 20px 0px;
+}
+
 .container-fluid {
 }
 
