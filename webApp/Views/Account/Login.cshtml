@@ -2,6 +2,13 @@
     ViewData["Title"] = "Авторизация";
 }
 
+@section Header {
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Login">Вход в личный кабинет</a>
+            </div>
+    </nav>
+}
 <div class="registration-cssave">
     <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
         <h3 class="text-center">Авторизация</h3>

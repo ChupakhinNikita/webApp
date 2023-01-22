@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "База данных пользователей";
 }
-
 <h2>База данных пользователей</h2>
 
 <p>
@@ -25,7 +24,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model) { 
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Login)

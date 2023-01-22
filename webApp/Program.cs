@@ -40,12 +40,6 @@ builder.Services.AddAuthorization(opts => {
 
 var app = builder.Build();
 
-app.MapGet("/logout", async (HttpContext context) =>
-{
-    await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-    return "Данные удалены";
-});
-
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

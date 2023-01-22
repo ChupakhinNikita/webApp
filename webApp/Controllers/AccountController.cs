@@ -17,56 +17,6 @@ namespace webApp.Controllers
             _context = context;
         }
 
-        /*[HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(User user)
-        {
-            // получаем из формы login и пароль
-            var form = HttpContext.Request.Form;
-
-            string login = form["login"];
-            string password = form["Password"];
-
-            // находим пользователя 
-            User? user = _context.Users.FirstOrDefault(u => u.Login == login && u.Password == password);
-
-            *//*Обработать*//*
-            // если пользователь не найден, отправляем статусный код 401
-            if (user is null) 
-                return Results.Unauthorized();
-            *//*Обработать*//*
-
-            var claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, user.Login),
-                new Claim(ClaimTypes.Role, user.Role)
-            };
-            // создаем объект ClaimsIdentity
-            var claimsIdentity = new ClaimsIdentity(claims, "Cookies");
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-            // установка аутентификационных куки
-            await HttpContext.SignInAsync(claimsPrincipal);
-
-            if (user.Role == "Администратор")
-            {
-                return RedirectToAction("Admin", "Home");
-            }
-            else if (user.Role == "Студент")
-            {
-                return RedirectToAction("Student", "Student");
-            }
-            else if (user.Role == "Преподователь")
-            {
-                return RedirectToAction("Teacher", "Teacher");
-            }
-        }*/
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -87,16 +37,20 @@ namespace webApp.Controllers
 
                     if (user.Role == "Администратор")
                     {
-                        return RedirectToAction("Admin", "Home");
+                        return RedirectToAction("Admin", "Home", new { id = user.IdUser });
                     }
                     else if (user.Role == "Студент")
                     {
-                        return RedirectToAction("Student", "Home");
+                        return RedirectToAction("Student", "Home", new { id = user.IdUser });
                     }
                     else if (user.Role == "Преподователь")
                     {
-                        return RedirectToAction("Teacher", "Home");
+                        return RedirectToAction("Teacher", "Home", new { id = user.IdUser });
                     }
+                }
+                else 
+                {
+                    // return Results.Unauthorized();
                 }
             }
             return View(model);
@@ -112,6 +66,13 @@ namespace webApp.Controllers
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
             // установка аутентификационных куки
             await HttpContext.SignInAsync(claimsPrincipal);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout() 
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Account");
         }
     }
 }
