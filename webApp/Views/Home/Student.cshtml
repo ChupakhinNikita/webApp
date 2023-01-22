@@ -1,0 +1,9 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Студент";
+}
+<h2>Страница студента</h2>
+@foreach (var claim in User.Claims.ToList())
+{
+    <p>@claim.Type : @claim.Value</p>
+}
