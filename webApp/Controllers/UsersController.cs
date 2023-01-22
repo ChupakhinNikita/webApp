@@ -24,7 +24,7 @@ namespace webApp.Controllers
               return View(await _context.Users.ToListAsync());
         }
 
-        // GET: Users/Details/5
+        // GET: Users/Details/id
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Users == null)
@@ -49,8 +49,6 @@ namespace webApp.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdUser,Login,Password,Role")] User user)
@@ -64,7 +62,7 @@ namespace webApp.Controllers
             return View(user);
         }
 
-        // GET: Users/Edit/5
+        // GET: Users/Edit/id
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Users == null)
@@ -81,8 +79,6 @@ namespace webApp.Controllers
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdUser,Login,Password,Role")] User user)
@@ -115,7 +111,7 @@ namespace webApp.Controllers
             return View(user);
         }
 
-        // GET: Users/Delete/5
+        // GET: Users/Delete/id
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Users == null)

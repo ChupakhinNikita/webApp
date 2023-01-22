@@ -4,7 +4,7 @@
     ViewData["Title"] = "Удаление пользователя";
 }
 
-<h1>Удаление пользователя</h1>
+<h2>Удаление пользователя</h2>
 
 <h3>Вы уверены, что хотите удалить этого пользователя?</h3>
 <div>
@@ -33,7 +33,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdUser" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
         <a asp-action="Index">Вернуться к списку пользователей</a>
     </form>
 </div>
