@@ -1,28 +1,34 @@
-﻿@{
+﻿@model webApp.Models.LoginModel
+
+@{
     ViewData["Title"] = "Авторизация";
 }
 
 @section Header {
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Login">Вход в личный кабинет</a>
-            </div>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">
+            <img src="~/vstu-logo.svg" width="52" height="72">
+        </a>
+        <a class="navbar-account" asp-area="" asp-controller="Account" asp-action="Login">
+            Вход в личный кабинет
+        </a>
     </nav>
 }
-<div class="registration-cssave">
-    <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+<div class="login-box">
+    <form class="login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
         <h3 class="text-center">Авторизация</h3>
 
         <p class="info-label">Логин / адрес электронной почты</p>
         <div class="form-group">
-            <input class="form-control item" type="text" name="login" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="login" required>
+            <input asp-for="Login" class="form-control item" type="text" name="login" placeholder="Введите логин" maxlength="15" minlength="4" pattern="^[a-zA-Z0-9_.-]*$" id="login" required>
         </div>
         <p class="info-label">Пароль</p>
+
         <div class="form-group">
-            <input class="form-control item" type="password" name="password" minlength="4" id="password" required>
+            <input asp-for="Password" class="form-control item" type="password" name="password" placeholder="Введите пароль" minlength="4" id="password" required>
         </div>
         <div class="form-group">
-            <button class="btn create-account" type="submit">Войти</button>
+            <button class="login-btn" type="submit">Войти</button>
         </div>
     </form>
 </div>

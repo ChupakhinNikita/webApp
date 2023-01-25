@@ -3,11 +3,14 @@
     ViewData["Title"] = "Студент";
 }
 @section Header {
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Student">Личный кабинет</a>
-                </div>
-        </nav>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">
+            <img src="~/vstu-logo.svg" width="52" height="72">
+        </a>
+        <a class="navbar-account" asp-area="" asp-controller="Home" asp-action="Student">
+            Личный кабинет
+        </a>
+    </nav>
 }
 <div>
     <h2>Страница студента</h2>

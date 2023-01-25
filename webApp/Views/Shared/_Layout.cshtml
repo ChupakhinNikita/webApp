@@ -10,32 +10,38 @@
     <link rel="icon" type="image/svg" href="~/vstu-logo.svg" />
 </head>
 <body>
-    <header>
+    <div class="wrapper">
+
+        <header>
         @if (IsSectionDefined("Header"))
         {
             @RenderSection("Header")
-    }
-    else 
-    { 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Account" asp-action="Login">Личный кабинет</a>
-                <a class="navbar-brand" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a>
-            </div>
-        </nav>
-    }
-        
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+        }
+        else 
+        { 
+            <nav class="navbar">
+                <a class="navbar-brand" href="#">
+                    <img src="~/vstu-logo.svg" width="52" height="72">
+                </a>
+                <a class="navbar-account" asp-area="" asp-controller="Account" asp-action="Login">
+                    Личный кабинет
+                </a>
+            </nav>
+        }
+            
+        </header>
+
+        <main class="main" role="main">
             @RenderBody()
         </main>
+
+        <footer class="py-3">
+            <div>
+                &copy; 2022 - WebApp
+            </div>
+        </footer>
     </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - WebApp
-        </div>
-    </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

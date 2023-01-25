@@ -7,6 +7,7 @@ namespace webApp.Models
         public string Login { get; set; }
 
         [DataType(DataType.Password)]
+
         public string Password { get; set; }
     }
 }
