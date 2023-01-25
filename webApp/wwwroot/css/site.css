@@ -1,20 +1,51 @@
 html {
-    background-color: #D8E6F3;
+    height: 100%;
+    background-color: #96bfe8;
     background-blend-mode: overlay;
     font-family: 'Roboto', sans-serif;
-}
-
-.registration-cssave {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    heighttext-align: 100%; 
-}
-
-td, tr {
     font-size: 17px;
+}
+
+body {
+    background-color: transparent;
+    height: 100%;
+}
+
+.login-box {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    background-color: #FFFFFF;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 50px 50px 50px 50px;
+    font-size: 19px;
+}
+
+.login-box .login-btn {
+    width: 400px;
+    border-radius: 7px;
+    padding: 13px 35px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    background-color: #263045;
+    border: none;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #4c7397 ;
+}
+
+.form-control {
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 9px;
+    padding: 10px 0px 10px 15px;
+    margin: 0px 0px 30px 0px;
 }
 
 a {
@@ -23,63 +54,33 @@ a {
     text-decoration: blink;
 }
 
-.form-control {
-    margin: 0px 0px 20px 0px;
-}
-
-.container-fluid {
-}
-
-body {
-    background-color: transparent;
-}
-
 .info-label {
     font-size: 18px;
+    margin: 10px 0px 10px 3px;
 }
 
-.registration-cssave {
-    padding: 50px 0;
-}
-
-.registration-cssave form {
-    max-width: 800px;
-    padding: 50px 70px;
-    border-radius: 10px;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: #96BFE8;
-}
-
-.registration-cssave form h3 {
+.login-box form h3 {
     text-align: center;
     font-size: 26px;
     font-weight: normal;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     margin-top: 0px;
 }
 
-.registration-cssave .item {
-    border-radius: 10px;
-    margin-bottom: 28px;
-    padding: 10px 15px;
-    font-size: 19px;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.form-control {
-    width: 300px;
+.main {
+    flex: 1 1 auto;
 }
 
-.info-label {
-    margin: 0px 0px 10px 3px;
-}
-
-.registration-cssave .create-account {
-    border-radius: 7px;
-    padding: 10px 35px;
-    font-size: 17px;
+footer {
+    color: grey;
     background-color: #263045;
-    border: none;
-    color: white;
+    padding: 20px 0px 20px 150px;
 }
 
 @media (max-width: 576px) {
@@ -102,4 +103,20 @@ body {
         border: none;
         color: white;
     }
+}
+
+.navbar {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #D8E6F3;
+}
+.navbar-account {
+    font-size: 18px;
+    color: black;
+}
+
+.logo {
+    width: 10px;
 }
