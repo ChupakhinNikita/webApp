@@ -1,41 +1,153 @@
-﻿@model webApp.Models.User
+﻿@model webApp.Models.Student
 @{
     ViewData["Title"] = "Студент";
 }
+
 @section Header {
-    <nav class="navbar">
-        <a class="navbar-brand" href="#">
-            <img src="~/vstu-logo.svg" width="52" height="72">
-        </a>
-        <a class="navbar-account" asp-area="" asp-controller="Home" asp-action="Student">
-            Личный кабинет
-        </a>
+    <div class="header_section">
+        <div class="header_logo">
+            <img src="~/img/logo_1.svg" alt="">
+        </div>
+        <div class="header_title">
+            <p>ВГТУ</p>
+                <div class="header_divider"> </div>
+            <div class="header_portal_title">
+                    <p>ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ ВОРОНЕЖСКОГО ГОСУДАРСТВЕННОГО ТЕХНИЧЕСКОГО УНИВЕРСИТЕТА</p>
+            </div>
+        </div>
+    </div>
+    <div class="header_section">
+        <div class="header_account">
+                <a class="navbar-account" asp-area="" asp-controller="Home" asp-action="Student">
+                <img src="~/img/account.svg" alt="">
+            </a>
+        </div>
+    </div>
+}
+
+@section nav {
+        <nav>
+        <div class="navbar_section">
+            <div class="navbar_buttons">
+                <a href="#">Расписание</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Зачетная книжка</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Учебные планы</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Моя группа</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Расписание</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Портфолио</a>
+            </div>
+            <div class="navbar_buttons">
+                <a href="#">Помощь</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Настройки</a>
+                <div class="navbar_button_divider"></div>
+                <a asp-action="Logout" asp-controller="Account">Выйти</a>
+            </div>
+        </div>
     </nav>
 }
-<div>
+
+<div class="main_left_section">
+    <div class="navigation">
+        <p>Навигация</p>
+    </div>
+</div>
+
+<div class="main_right_section">
+    <div class="main_right_top_section">
+        <div>
+            @Model.LastName
+            @Model.FirstName
+            @Model.Patronomic
+            @Model.Group
+        </div>
+    </div>
+
+    <div class="main_right_bottom_section">
+
+        <div class="student_info">
+            <div class="inputs">
+            </div>
+            <p>Факультет</p>
+
+            <div class="inputs">
+            </div>
+            <p>Номер студенческого билета</p>
+
+            <div class="inputs">
+                @Model.Gradebook
+            </div>
+            <p>Номер зачетной книжки</p>
+
+            <div class="inputs">
+                @Model.Speciality
+            </div>
+            <p>Специальность</p>
+
+            <div class="inputs">
+                @Model.Specialization
+            </div>
+            <p>Специализация</p>
+        </div>
+        <div class="student_info">
+            <div class="inputs">
+                @Model.TrainingLevel
+            </div>
+            <p>Уровень образовательной программы</p>
+
+            <div class="inputs">
+                @Model.TuitionForm
+            </div>
+            <p>Форма обучения</p>
+
+            <div class="inputs">
+                @Model.TuitionType
+            </div>
+            <p>Тип обучения</p>
+
+            <div class="inputs">
+            </div>
+            <p>Номер телефона</p>
+
+            <div class="inputs">
+            </div>
+            <p>Почта</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+@*<div>
     <h2>Страница студента</h2>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Login)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Login)
+            @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.LastName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+            @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
+            @Html.DisplayNameFor(model => model.Patronomic)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Role)
+            @Html.DisplayFor(model => model.Patronomic)
         </dd>
     </dl>
-</div>
-<div class="back-btn">
-    <a asp-action="Logout" asp-controller="Account">Выйти из аккаунта</a>
-</div>
+</div>*@

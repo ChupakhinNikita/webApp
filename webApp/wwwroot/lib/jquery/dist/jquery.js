@@ -9295,7 +9295,7 @@ jQuery.extend( {
 		timeout: 0,
 		data: null,
 		dataType: null,
-		username: null,
+		userLogin: null,
 		password: null,
 		cache: null,
 		throws: false,
@@ -9988,7 +9988,7 @@ jQuery.ajaxTransport( function( options ) {
 					options.type,
 					options.url,
 					options.async,
-					options.username,
+					options.userLogin,
 					options.password
 				);
 

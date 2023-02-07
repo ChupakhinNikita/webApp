@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Подключение к БД
-string connection = "Host=localhost;Port=5432;Database=users;Username=postgres;Password=123456";
+string connection = "Host=localhost;Port=5432;Database=users;userLogin=postgres;Password=123456";
 builder.Services.AddDbContext<UsersContext>(options => options.UseNpgsql(connection));
 
 // Подключение аутентификации с помощью куки
@@ -51,7 +51,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-/*app.UseRouting();*/
+app.UseRouting();
 
 app.UseAuthentication();   // Добавление middleware аутентификации 
 app.UseAuthorization();   // Добавление middleware авторизации 

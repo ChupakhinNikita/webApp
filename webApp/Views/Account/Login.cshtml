@@ -5,14 +5,25 @@
 }
 
 @section Header {
-    <nav class="navbar">
-        <a class="navbar-brand" href="#">
-            <img src="~/vstu-logo.svg" width="52" height="72">
-        </a>
-        <a class="navbar-account" asp-area="" asp-controller="Account" asp-action="Login">
-            Вход в личный кабинет
-        </a>
-    </nav>
+    <div class="header_section">
+        <div class="header_logo">
+            <img src="~/img/logo_1.svg" alt="">
+        </div>
+        <div class="header_title">
+            <p>ВГТУ</p>
+                <div class="header_divider"> </div>
+            <div class="header_portal_title">
+                    <p>ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ ВОРОНЕЖСКОГО ГОСУДАРСТВЕННОГО ТЕХНИЧЕСКОГО УНИВЕРСИТЕТА</p>
+            </div>
+        </div>
+    </div>
+    <div class="header_section">
+        <div class="header_account">
+            <a class="navbar-account" asp-area="" asp-controller="Account" asp-action="Login">
+                Вход в ЛК
+            </a>
+        </div>
+    </div>
 }
 <div class="login-box">
     <form class="login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
@@ -29,6 +40,9 @@
         </div>
         <div class="form-group">
             <button class="login-btn" type="submit">Войти</button>
+        </div>
+        <div class="editor-label">
+                @Html.ValidationSummary()
         </div>
     </form>
 </div>

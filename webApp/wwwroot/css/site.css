@@ -1,9 +1,327 @@
-html {
-    height: 100%;
+/*html {
     background-color: #96bfe8;
     background-blend-mode: overlay;
     font-family: 'Roboto', sans-serif;
+    
+}*/
+/*------------------Minimal CSS Reset-----------------*/
+
+html {
+    box-sizing: border-box;
     font-size: 17px;
+}
+
+html, body, .container {
+    height: 100%;
+    width: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+/*------------------header-----------------*/
+
+header {
+    height: 110px;
+    display: flex;
+    width: 1235px;
+    justify-content: space-between;
+    padding: 10px 0px 10px 0px;
+    background-color: #ffffff;
+    min-width: 100%;
+}
+
+.header_section {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #ffffff;
+}
+
+.header_logo {
+    display: flex;
+    margin: 0px 20px 0px 10px;
+    height: 80px;
+}
+
+.header_title {
+    display: flex;
+    align-items: center;
+}
+
+.header_title p {
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 125%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #263145;
+}
+
+.header_divider {
+    background-color: #263145;
+    margin: 0px 20px 0px 20px;
+    border-radius: 5px;
+    padding-top: 10%;
+    width: 3px;
+}
+
+.header_portal_title {
+    width: 600px;
+}
+
+.header_account {
+    display: flex;
+    align-items: center;
+    margin: 0px 30px 0px 0px;
+}
+
+/*------------------navbdr-----------------*/
+
+nav {
+    background-color: #D1AF69;
+    padding: 0px 0px 2px 0px;
+    min-width: 100%;
+    width: 1235px;
+}
+
+.navbar_section {
+    display: flex;
+    justify-content: space-between;
+    background-color: #263145;
+}
+
+.navbar_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 5px 10px 5px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 18px;
+}
+
+.navbar_buttons a {
+    text-align: center;
+    text-decoration: none;
+    padding: 0px 10px 0px 10px;
+    color: #D1AF69;
+}
+
+.navbar_buttons a:hover {
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px;
+    color: #263145;
+    background-color: #D1AF69;
+}
+
+.navbar_button_divider {
+    background-color: #D1AF69;
+    border-radius: 5px;
+    padding-top: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 2px;
+}
+
+/*------------------main_section-----------------*/
+
+.main_section {
+    display: flex;
+    justify-content: center;
+    min-height: 80%;
+    max-height: 100%;
+    width: 1235px;
+    min-width: 100%;
+    background-color: #3B4762;
+}
+
+
+.main_left_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px 10px 20px 20px;
+    width: 40%;
+    border-radius: 5px;
+    background-color: #263145;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    font-family: 'Noto Sans', sans-serif;
+    color: #b3b3b3;
+    border-radius: 5px;
+    height: 30px;
+    width: 90%;
+    background-color: #3B4762;
+}
+
+.main_right_section {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px 20px 10px;
+    width: 80%;
+    border-radius: 5px;
+    background-color: #263145;
+}
+
+.main_right_top_section {
+    display: flex;
+    margin: 20px;
+    margin-bottom: 15px;
+    padding: 15px;
+    padding-left: 50px;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+    color: #FFFFFF;
+    background-color: #3B4762;
+    font-size: 23px;
+}
+
+.main_right_bottom_section {
+    display: flex;
+    border-radius: 5px;
+    background-color: #263145;
+}
+
+    .student_info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px;
+        width: 80%;
+        border-radius: 5px;
+        background-color: #263145;
+    }
+
+.inputs {
+    font-family: 'Noto Sans', sans-serif;
+    width: 100%;
+    height: 30px;
+    border-style: none;
+    background-color: #3B4762;
+    border-radius: 5px;
+    color: #dcdada;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display:flex;
+    justify-content: center;
+    align-items:    center;
+}
+.student_info input {
+    font-family: 'Noto Sans', sans-serif;
+    width: 100%;
+    height: 30px;
+    border-style: none;
+    background-color: #3B4762;
+    border-radius: 5px;
+    color: #dcdada;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.student_info p {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: lighter;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #b3b3b3;
+}
+
+/*------------------footer-----------------*/
+
+footer {
+
+    display: flex;
+    align-items: end;
+    background-color: #D1AF69;
+    padding: 2px 0px 0px 0px;
+    min-width: 100%;
+    width: 1235px;
+}
+
+.footer_section {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0px 0px 0px;
+    background-color: #263145;
+    min-width: 100%;
+    width: 1200px;
+    height: 100%;
+}
+
+.footer_logo {
+    display: flex;
+    height: 90px;
+    margin: 0px 20px 0px 10px;
+}
+
+.footer_title {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 0px 0px;
+}
+
+.footer_title p {
+    font-family: 'Noto Sans', sans-serif;
+    line-height: 125%;
+    font-weight: bold;
+    font-size: 20px;
+    color: #D1AF69;
+}
+
+.footer_portal_title {
+    width: 600px;
+}
+
+.footer_divider {
+    background-color: #D1AF69;
+    margin: 0px 20px 0px 20px;
+    border-radius: 5px;
+    padding-top: 10%;
+    width: 2.5px;
+}
+
+.footer_contacts {
+    font-family: 'Noto Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 5px;
+}
+
+.footer_contacts h3 {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 15px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #FFFFFF;
+    margin: 0px 0px 10px 10px;
+    line-height: 20px;
+}
+
+.footer_contacts a {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 10px;
+    text-decoration: none;
+    color: #D1AF69;
+    line-height: 25px;
 }
 
 body {
@@ -12,8 +330,8 @@ body {
 }
 
 .login-box {
-    padding-top: 100px;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -77,12 +395,6 @@ a {
     flex: 1 1 auto;
 }
 
-footer {
-    color: grey;
-    background-color: #263045;
-    padding: 20px 0px 20px 150px;
-}
-
 @media (max-width: 576px) {
     html {
         background-color: #96BFE8;
@@ -105,12 +417,13 @@ footer {
     }
 }
 
-.navbar {
+.navbarLogin {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #D8E6F3;
+    background-color: rgb(255,255,255);
+    min-height: 100%;
 }
 .navbar-account {
     font-size: 18px;
