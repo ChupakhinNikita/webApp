@@ -33,12 +33,11 @@ namespace webApp.Controllers
             {
                 // находим пользователя 
                 User? user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
+
+               
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
-
-                    // string jsonData = JsonConvert.SerializeObject(user);
-
 
                     if (user.Role == "Администратор")
                     {
@@ -46,16 +45,22 @@ namespace webApp.Controllers
                     }
                     else if (user.Role == "Студент")
                     {
+                        //Student? student = await _context.Students.FirstOrDefaultAsync(u => u.IdStudent == 1);
+                        //string jsonData = JsonConvert.SerializeObject(student);
+
                         return RedirectToAction("Student", "Home");
                     }
                     else if (user.Role == "Преподователь")
                     {
+                        //Teacher? teacher = await _context.Teachers.FirstOrDefaultAsync(u => u.IdTeacher == 1);
+                        //string jsonData = JsonConvert.SerializeObject(teacher);
+
                         return RedirectToAction("Teacher", "Home");
                     }
                 }
                 else 
                 {
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    ModelState.AddModelError("Name", "Некорректные логин и(или) пароль");
                 }
             }
             return View(model);
