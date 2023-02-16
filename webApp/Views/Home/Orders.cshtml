@@ -1,6 +1,6 @@
-﻿@model webApp.Models.Student
+﻿@model webApp.Models.Orders
 @{
-    ViewData["Title"] = "Студент";
+    ViewData["Title"] = "Зачетная книжка";
 }
 
 @section Header {
@@ -17,13 +17,15 @@
     </div>
     <div class="header_section">
         <div class="header_account">
-            <img src="~/img/account.svg" alt="">
+            <a class="navbar-account" asp-area="" asp-controller="Home" asp-action="Student">
+                <img src="~/img/account.svg" alt="">
+            </a>
         </div>
     </div>
 }
 
 @section nav {
-        <nav>
+    <nav>
         <div class="navbar_section">
             <div class="navbar_buttons">
                 <a href="#">Расписание</a>
@@ -63,43 +65,28 @@
 <div class="main_right_section">
     <div class="main_right_top_student_info">
         <div>
-            Информация о студенте
-        </div>
-    </div>
-
-    <div class="main_right_top_student_FIO">
-        <div class="main_right_top_account">
-            <img src="~/img/account.svg" alt="">
-        </div>
-        <div>
-            @Model.LastName @Model.FirstName @Model.Patronomic @Model.Group
+            Информация о приказах
         </div>
     </div>
 
     <div class="main_right_bottom_section">
-        <div class="student_info">
-            <div class="student_info_field">@Model.Gradebook</div>
-            <p>Номер зачетной книжки</p>
-            <div class="student_info_field"></div>
-            <p>Факультет</p>
-            <div class="student_info_field"></div>
-            <p>Направление подготовки/Специальность</p>
-            <div class="student_info_field"></div>
-            <p>Профиль/Специализация</p>
-            <div class="student_info_field">@Model.Course</div>
-            <p>Курс</p>      
-        </div>
-        <div class="student_info">
-            <div class="student_info_field">@Model.TrainingLevel</div>
-            <p>Уровень образования</p>
-            <div class="student_info_field">@Model.TuitionType</div>
-            <p>Основание обучения</p>
-            <div class="student_info_field">@Model.FormEducation</div>
-            <p>Форма обучения</p>
-            <div class="student_info_field">@Model.StudentCondition</div>
-            <p>Статус студента</p>
-            <div class="student_info_field">@Model.IdStudent</div>
+        <div class="order_info">
+            <div class="order_info_field">@Model.IdStudent</div>
             <p>Уникальный идентификатор студента</p>
         </div>
+        <div class="order_info">
+            <div class="order_info_field">@Model.OrderCode</div>
+            <p>Номер приказа</p>
+        </div>
+        <div class="order_info">
+            <div class="order_info_field">@*@Model.OrderDate.Value.Date.ToString("D")*@</div>
+            <p>Дата приказа</p>
+        </div>
     </div>
+
+    <div class="order_section">
+        <div class="order_content_field">@Model.OrderHeader</div>
+        <p>Формулировка приказа</p>
+    </div>
+
 </div>

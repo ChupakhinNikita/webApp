@@ -1,34 +1,51 @@
-﻿namespace webApp.Models
+﻿using Newtonsoft.Json;
+using System.Text.Json.Serialization;
+
+namespace webApp.Models
 {
     public partial class Student
     {
+        [JsonProperty("Код")]
         public int IdStudent { get; set; }
 
-        public string? LastName { get; set; }
-
-        public string? FirstName { get; set; }
-
-        public string? Patronomic { get; set; }
-
+        [JsonProperty("Зачетная_книга")]
         public string? Gradebook { get; set; }
 
-        public string? Group { get; set; }
+        [JsonProperty("Фамилия")]
+        public string? LastName { get; set; }
 
+        [JsonProperty("Имя")]
+        public string? FirstName { get; set; }
+
+        [JsonProperty("Отчество")]
+        public string? Patronomic { get; set; }
+
+        [JsonProperty("Основание_обучения")]
         public string? TuitionType { get; set; }
 
-        public string? TuitionForm { get; set; }
-
-        public string? TrainingLevel { get; set; }
-
+        [JsonProperty("Статус_студента")]
         public string? StudentCondition { get; set; }
 
+        [JsonProperty("Группа")]
+        public string? Group { get; set; }
+
+        [JsonProperty("Курс")]
+        public string? Course { get; set; }
+
+        [JsonProperty("Подготовка")]
+        public string? TrainingLevel { get; set; }
+
+        [JsonProperty("Факультет")]
+        public string? Faculty { get; set; }
+
+        [JsonProperty("Форма_обучения")]
+        public string? FormEducation { get; set; }
+
+        /*[JsonProperty("Специальность")]
         public string? Speciality { get; set; }
 
-        public string? Specialization { get; set; }
-
-        public int? Course { get; set; }
-
-        public string? DateTime { get; set; }
+        [JsonProperty("Профиль")]
+        public string? Specialization { get; set; }*/
     }
 
 }

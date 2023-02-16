@@ -1,0 +1,133 @@
+﻿@model webApp.Models.RecordBook
+@{
+    ViewData["Title"] = "Зачетная книжка";
+}
+
+@section Header {
+    <div class="header_section">
+        <div class="header_logo">
+            <img src="~/img/vstu-logo.svg" alt="Логотип ВГТУ">
+        </div>
+        <div class="header_title">
+            <div class="header_divider"> </div>
+            <div class="header_portal_title">
+                <p>ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ ВОРОНЕЖСКОГО ГОСУДАРСТВЕННОГО ТЕХНИЧЕСКОГО УНИВЕРСИТЕТА</p>
+            </div>
+        </div>
+    </div>
+    <div class="header_section">
+        <div class="header_account">
+            <a class="navbar-account" asp-area="" asp-controller="Home" asp-action="Student">
+                <img src="~/img/account.svg" alt="">
+            </a>
+        </div>
+    </div>
+}
+
+@section nav {
+    <nav>
+        <div class="navbar_section">
+            <div class="navbar_buttons">
+                <a href="#">Расписание</a>
+                <div class="navbar_button_divider"></div>
+                <a asp-action="RecordBook" asp-controller="Home">Зачетная книжка</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Учебные планы</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Моя группа</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Расписание</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Портфолио</a>
+                <div class="navbar_button_divider"></div>
+                <a asp-action="Orders" asp-controller="Home">Приказы</a>
+            </div>
+            <div class="navbar_buttons">
+                <a href="#">Помощь</a>
+                <div class="navbar_button_divider"></div>
+                <a href="#">Настройки</a>
+                <div class="navbar_button_divider"></div>
+                <a asp-action="Logout" asp-controller="Account">Выйти</a>
+            </div>
+        </div>
+    </nav>
+}
+
+<div class="main_left_section">
+    <div class="navigation">
+        <p>Навигация</p>
+    </div>
+    <div class="navigation_divider"></div>
+    <a asp-action="Student" asp-controller="Home">
+        <div class="navigation_button">На главную страницу</div>
+    </a>
+
+    <div class="navigation_list_section">
+        <select id="navigation_list_button" class="navigation_list_button">
+            <option value="1sem">1 курс 1 семестр</option>
+            <option value="2sem">1 курс 2 семестр</option>
+            <option value="3sem">2 курс 3 семестр</option>
+            <option value="4sem">2 курс 4 семестр</option>
+            <option value="5sem">3 курс 5 семестр</option>
+            <option value="6sem">3 курс 6 семестр</option>
+            <option value="7sem">4 курс 7 семестр</option>
+            <option value="8sem">4 курс 8 семестр</option>
+        </select>
+    </div>
+
+    <a href="#">
+        <div class="navigation_button">Экзамены</div>
+    </a>
+    <a href="#">
+        <div class="navigation_button">Зачеты</div>
+    </a>
+    <a href="#">
+        <div class="navigation_button">Курсовая работа/проект</div>
+    </a>
+    <div class="navigation_list_section">
+        <select id="navigation_list_button" class="navigation_list_button">
+            <option value="study">Учебная практика</option>
+            <option value="work">Производственная практика</option>
+        </select>
+    </div>
+
+</div>
+
+<div class="main_right_section">
+    <div class="main_right_top_record_book_title">
+        <div>
+            Информация о зачетной книжке
+        </div>
+    </div>
+
+@*    <div class="main_right_top_section">
+        <div class="student_record_book_info">
+            <div class="main_right_top_info_field"></div>
+            <p>Уникальный идентификатор студента</p>
+        </div>
+
+        <div class="student_record_book_info">
+            <div class="main_right_top_info_field"></div>
+            <p>Номер зачетной книжки студента</p>
+        </div>
+    </div>*@
+
+    <div class="main_right_bottom_section">
+        <div class="student_record_book_info">
+            <div class="student_record_book_field1">@Model.Discipline</div>
+            <p>Наименование дисциплины</p>
+        </div>
+        <div class="student_record_book_info">
+            <div class="student_record_book_field2">@Model.Grade</div>
+            <p>Отметка</p>
+        </div>
+        <div class="student_record_book_info">
+            <div class="student_record_book_field3">@*@Model.Date.Value.Date.ToString("d")*@</div>
+            <p>Дата</p>
+        </div>
+        <div class="student_record_book_info">
+            <div class="student_record_book_field4">@Model.Teacher</div>
+            <p>ФИО преподавателя/экзаменатора</p>
+        </div>
+    </div>
+</div>

@@ -16,8 +16,6 @@ namespace webApp.Models
         {
         }
 
-        public virtual DbSet<Student> Students { get; set; }
-
         public virtual DbSet<Teacher> Teachers { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
@@ -26,52 +24,6 @@ namespace webApp.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>(entity =>
-            {
-                entity.HasKey(e => e.IdStudent).HasName("students_pkey");
-
-                entity.ToTable("students");
-
-                entity.Property(e => e.IdStudent).UseIdentityAlwaysColumn();
-                entity.Property(e => e.Course).HasColumnName("course");
-                entity.Property(e => e.DateTime)
-                    .HasMaxLength(40)
-                    .HasColumnName("dateTime");
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(30)
-                    .HasColumnName("firstName");
-                entity.Property(e => e.Gradebook)
-                    .HasMaxLength(30)
-                    .HasColumnName("gradebook");
-                entity.Property(e => e.Group)
-                    .HasMaxLength(30)
-                    .HasColumnName("group");
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(30)
-                    .HasColumnName("lastName");
-                entity.Property(e => e.Patronomic)
-                    .HasMaxLength(30)
-                    .HasColumnName("patronomic");
-                entity.Property(e => e.Speciality)
-                    .HasMaxLength(70)
-                    .HasColumnName("speciality");
-                entity.Property(e => e.Specialization)
-                    .HasMaxLength(70)
-                    .HasColumnName("specialization");
-                entity.Property(e => e.StudentCondition)
-                    .HasMaxLength(30)
-                    .HasColumnName("studentCondition");
-                entity.Property(e => e.TrainingLevel)
-                    .HasMaxLength(30)
-                    .HasColumnName("trainingLevel");
-                entity.Property(e => e.TuitionForm)
-                    .HasMaxLength(30)
-                    .HasColumnName("tuitionForm");
-                entity.Property(e => e.TuitionType)
-                    .HasMaxLength(30)
-                    .HasColumnName("tuitionType");
-            });
-
             modelBuilder.Entity<Teacher>(entity =>
             {
                 entity.HasKey(e => e.IdTeacher).HasName("teachers_pkey");
@@ -117,6 +69,7 @@ namespace webApp.Models
                 entity.Property(e => e.Login).HasColumnType("character varying");
                 entity.Property(e => e.Password).HasColumnType("character varying");
                 entity.Property(e => e.Role).HasColumnType("character varying");
+                entity.Property(e => e.Id).HasColumnType("character varying");
             });
 
             OnModelCreatingPartial(modelBuilder);
