@@ -22,10 +22,10 @@ namespace webApp.Models
         [JsonProperty("Время_начала")]
         public DateTime? StartTime { get; set; }
 
-        [JsonProperty("Преподователь")]
+        [JsonProperty("Преподаватель")]
         public string? Teacher { get; set; }
 
-        [JsonProperty("ИД_преподователя")]
+        [JsonProperty("ИД_преподавателя")]
         public string? IdTeacher { get; set; }
     }
 }

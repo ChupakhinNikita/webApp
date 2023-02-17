@@ -16,5 +16,7 @@ namespace webApp.Models
         [JsonProperty("Заголовок_приказа")]
         public string? OrderHeader { get; set; }
 
+        [JsonProperty("Формулировка")]
+        public string? Order { get; set; }
     }
 }

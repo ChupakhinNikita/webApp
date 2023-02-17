@@ -26,6 +26,12 @@ namespace webApp.Models
         [JsonProperty("Статус_студента")]
         public string? StudentCondition { get; set; }
 
+        [JsonProperty("Специальность")]
+        public string? Speciality { get; set; }
+
+        [JsonProperty("Профиль")]
+        public string? Specialization { get; set; }
+
         [JsonProperty("Группа")]
         public string? Group { get; set; }
 
@@ -41,11 +47,6 @@ namespace webApp.Models
         [JsonProperty("Форма_обучения")]
         public string? FormEducation { get; set; }
 
-        /*[JsonProperty("Специальность")]
-        public string? Speciality { get; set; }
-
-        [JsonProperty("Профиль")]
-        public string? Specialization { get; set; }*/
     }
 
 }
