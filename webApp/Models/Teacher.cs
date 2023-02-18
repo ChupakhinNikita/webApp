@@ -2,7 +2,7 @@
 {
     public partial class Teacher
     {
-        public int? IdTeacher { get; set; } = null!;
+        public int TeacherId { get; set; }
 
         public string? LastName { get; set; }
 

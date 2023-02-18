@@ -1,4 +1,5 @@
-﻿@model webApp.Models.RecordBook
+﻿@model System.Collections.Generic.List<webApp.Models.RecordBookJSON>
+
 @{
     ViewData["Title"] = "Зачетная книжка";
 }
@@ -111,23 +112,25 @@
             <p>Номер зачетной книжки студента</p>
         </div>
     </div>*@
-
-    <div class="main_right_bottom_section">
-        <div class="student_record_book_info">
-            <div class="student_record_book_field1">@Model.Discipline</div>
-            <p>Наименование дисциплины</p>
+    @foreach (var record in @Model)
+    {
+        <div class="main_right_bottom_section">
+            <div class="student_record_book_info">
+                <div class="student_record_book_field1">@record.Discipline</div>
+                <p>Наименование дисциплины</p>
+            </div>
+            <div class="student_record_book_info">
+                <div class="student_record_book_field2">@record.Grade</div>
+                <p>Отметка</p>
+            </div>
+            <div class="student_record_book_info">
+                <div class="student_record_book_field3">@record.Date.Value.Date.ToString("d")</div>
+                <p>Дата</p>
+            </div>
+            <div class="student_record_book_info">
+                <div class="student_record_book_field4">@record.Teacher</div>
+                <p>ФИО преподавателя/экзаменатора</p>
+            </div>
         </div>
-        <div class="student_record_book_info">
-            <div class="student_record_book_field2">@Model.Grade</div>
-            <p>Отметка</p>
-        </div>
-        <div class="student_record_book_info">
-            <div class="student_record_book_field3">@*@Model.Date.Value.Date.ToString("d")*@</div>
-            <p>Дата</p>
-        </div>
-        <div class="student_record_book_info">
-            <div class="student_record_book_field4">@Model.Teacher</div>
-            <p>ФИО преподавателя/экзаменатора</p>
-        </div>
-    </div>
+    } 
 </div>

@@ -1,4 +1,4 @@
-﻿@model webApp.Models.Student
+﻿@model webApp.Models.StudentJSON
 @{
     ViewData["Title"] = "Студент";
 }
@@ -80,11 +80,11 @@
         <div class="student_info">
             <div class="student_info_field">@Model.Gradebook</div>
             <p>Номер зачетной книжки</p>
-            <div class="student_info_field"></div>
+            <div class="student_info_field">@Model.Faculty</div>
             <p>Факультет</p>
-            <div class="student_info_field"></div>
+            <div class="student_info_field">@Model.Speciality</div>
             <p>Направление подготовки/Специальность</p>
-            <div class="student_info_field"></div>
+            <div class="student_info_field">@Model.Specialization</div>
             <p>Профиль/Специализация</p>
             <div class="student_info_field">@Model.Course</div>
             <p>Курс</p>      

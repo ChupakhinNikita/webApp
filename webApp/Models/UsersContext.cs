@@ -20,62 +20,10 @@ namespace webApp.Models
 
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<Student> Students { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=users;userName=postgres;Password=123456");
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Teacher>(entity =>
-            {
-                entity.HasKey(e => e.IdTeacher).HasName("teachers_pkey");
-
-                entity.ToTable("teachers");
-
-                entity.Property(e => e.IdTeacher).HasColumnType("character varying");
-                entity.Property(e => e.DateTime)
-                    .HasMaxLength(40)
-                    .HasColumnName("dateTime");
-                entity.Property(e => e.Degree)
-                    .HasMaxLength(40)
-                    .HasColumnName("degree");
-                entity.Property(e => e.Department)
-                    .HasMaxLength(70)
-                    .HasColumnName("department");
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(30)
-                    .HasColumnName("firstName");
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(30)
-                    .HasColumnName("lastName");
-                entity.Property(e => e.Patronomic)
-                    .HasMaxLength(40)
-                    .HasColumnName("patronomic");
-                entity.Property(e => e.Post)
-                    .HasMaxLength(40)
-                    .HasColumnName("post");
-                entity.Property(e => e.Title)
-                    .HasMaxLength(30)
-                    .HasColumnName("title");
-            });
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.IdUser).HasName("User_pkey");
-
-                entity.ToTable("User");
-
-                entity.HasIndex(e => e.IdUser, "unique_id").IsUnique();
-
-                entity.Property(e => e.IdUser).UseIdentityAlwaysColumn();
-                entity.Property(e => e.Login).HasColumnType("character varying");
-                entity.Property(e => e.Password).HasColumnType("character varying");
-                entity.Property(e => e.Role).HasColumnType("character varying");
-                entity.Property(e => e.Id).HasColumnType("character varying");
-            });
-
-            OnModelCreatingPartial(modelBuilder);
-        }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 
 }

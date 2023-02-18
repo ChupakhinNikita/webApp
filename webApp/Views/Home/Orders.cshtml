@@ -1,4 +1,4 @@
-﻿@model webApp.Models.Orders
+﻿@model System.Collections.Generic.List<webApp.Models.OrdersJSON>
 @{
     ViewData["Title"] = "Зачетная книжка";
 }
@@ -61,6 +61,13 @@
     <a asp-action="Student" asp-controller="Home">
         <div class="navigation_button">На главную страницу</div>
     </a>
+
+    @foreach (var order in @Model)
+    {
+        <a class="navigation_button" href="#" onclick="clickOnOrders('@order.IdStudent', '@order.OrderCode', '@order.OrderDate.Value.Date.ToString("D")', '@order.Order')">Приказ № @order.OrderCode</a>
+    }
+    
+
 </div>
 <div class="main_right_section">
     <div class="main_right_top_student_info">
@@ -69,24 +76,35 @@
         </div>
     </div>
 
+
     <div class="main_right_bottom_section">
         <div class="order_info">
-            <div class="order_info_field">@Model.IdStudent</div>
+            <div class="order_info_field" id="IdStudent">@Model[0].IdStudent</div>
             <p>Уникальный идентификатор студента</p>
         </div>
         <div class="order_info">
-            <div class="order_info_field">@Model.OrderCode</div>
+            <div class="order_info_field" id="OrderCode">@Model[0].OrderCode</div>
             <p>Номер приказа</p>
         </div>
         <div class="order_info">
-            <div class="order_info_field">@*@Model.OrderDate.Value.Date.ToString("D")*@</div>
+            <div class="order_info_field" id="OrderDate">@Model[0].OrderDate.Value.Date.ToString("D")</div>
             <p>Дата приказа</p>
         </div>
     </div>
 
     <div class="order_section">
-        <div class="order_content_field">@Model.OrderHeader</div>
+        <div class="order_content_field" id="Order">@Model[0].Order</div>
         <p>Формулировка приказа</p>
     </div>
 
+
 </div>
+
+<script>
+    function clickOnOrders(id, code, date, text) {
+        document.getElementById('IdStudent').innerHTML = id;
+        document.getElementById('OrderCode').innerHTML = code;
+        document.getElementById('OrderDate').innerHTML = date;
+        document.getElementById('Order').innerHTML = text;
+    }
+</script>

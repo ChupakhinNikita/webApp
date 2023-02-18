@@ -2,7 +2,7 @@
 
 namespace webApp.Models
 {
-    public class Orders
+    public class OrdersJSON
     {
         [JsonProperty("ИД_Студента")]
         public string? IdStudent { get; set; }
@@ -16,5 +16,7 @@ namespace webApp.Models
         [JsonProperty("Заголовок_приказа")]
         public string? OrderHeader { get; set; }
 
+        [JsonProperty("Формулировка")]
+        public string? Order { get; set; }
     }
 }
