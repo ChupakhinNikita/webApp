@@ -41,8 +41,7 @@ namespace webApp.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.IdUser == idAdmin);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.IdUser == idAdmin);
             if (user == null)
             {
                 return NotFound();
@@ -56,6 +55,7 @@ namespace webApp.Controllers
         {
             string _id = HttpContext.User.FindFirst("IdUser").Value;
             int id = Convert.ToInt32(_id);
+
             if ( _context.Users == null)
             {
                 return NotFound();
@@ -69,8 +69,6 @@ namespace webApp.Controllers
 
             return View(user);
         }
-
-
 
         [Authorize(Policy = "OnlyForStudent")]
         public async Task<IActionResult> Student()
@@ -95,17 +93,7 @@ namespace webApp.Controllers
 
                 if (studentData.Result == null) { Console.WriteLine("\n\tCANCELED\n"); }
 
-                Console.WriteLine("\n");
-                foreach (var item in studentData.Result.JsonRecord)
-                {
-                    foreach (var record in item) 
-                        Console.WriteLine($"{record.Key}: {record.Value}");
-
-                    Console.WriteLine("\n");
-                }
-
                 Console.WriteLine("\nJSON studentData: " + studentData.Result.JsonRecord[0].ToJson() + "\n");
-
 
                 return View(student);
             }
@@ -115,7 +103,6 @@ namespace webApp.Controllers
                 return View();
             }
         }
-
 
         public async Task<IActionResult> RecordBook()
         {
@@ -130,32 +117,19 @@ namespace webApp.Controllers
 
             var rabbit_client = service_provider.GetService<IRabbitTransfer>()!;
 
-
             using var cancel_sourse = new CancellationTokenSource();
+
+            List<RecordBookJSON> books = new List<RecordBookJSON>();
             try
             {
                 var recordBookData = rabbit_client.SendMessage(RequestType.Statements, user.Id, cancel_sourse.Token);
 
                 Console.WriteLine("\nJSON recordBookData: " + recordBookData.Result.JsonRecord[0].ToJson() + "\n");
 
-                int count = recordBookData.Result.JsonRecord.Count() - 2;
-                Console.WriteLine("\nKEY: " + count + "\n");
-
-
-                List<RecordBookJSON> books = new List<RecordBookJSON>();
-
-                for (int i = 0; i < count; i++)
+                for (int i = 0; i < recordBookData.Result.JsonRecord.Count() - 2; i++)
                 {
                     RecordBookJSON? bookData = JsonConvert.DeserializeObject<RecordBookJSON?>(recordBookData.Result.JsonRecord[i].ToJson());
                     books.Add(bookData);
-                }
-
-                foreach (var item in recordBookData.Result.JsonRecord)
-                {
-                    foreach (var record in item)
-                        Console.WriteLine($"{record.Key}: {record.Value}");
-
-                    Console.WriteLine("\n");
                 }
 
                 if (books != null)
@@ -167,17 +141,13 @@ namespace webApp.Controllers
             }
             catch (AggregateException error) when (error.InnerException is TransferException)
             {
-                Console.WriteLine("\n");
-
-                Console.WriteLine($"{error.Message}");
+                Console.WriteLine($"\n{error.Message}");
                 return View();
             }
         }
 
-
         public async Task<IActionResult> Orders()
         {
-
             string _id = HttpContext.User.FindFirst("IdUser").Value;
             int id = Convert.ToInt32(_id);
             if (_context.Users == null)
@@ -190,24 +160,20 @@ namespace webApp.Controllers
             var rabbit_client = service_provider.GetService<IRabbitTransfer>()!;
 
             using var cancel_sourse = new CancellationTokenSource();
+
+            List<OrdersJSON> orders = new List<OrdersJSON>();
             try
             {
                 var ordersData = rabbit_client.SendMessage(RequestType.Orders, user.Id, cancel_sourse.Token);
                 
                 Console.WriteLine("\nJSON ordersData: " + ordersData.Result.JsonRecord[0].ToJson() + "\n");
 
-                int count = ordersData.Result.JsonRecord.Count() - 2;
-                Console.WriteLine("\nKEY: " + count + "\n");
-
-                List<OrdersJSON> orders = new List<OrdersJSON>();
-
-                for (int i = 0; i < count; i++) {
-                    OrdersJSON orderd = JsonConvert.DeserializeObject<OrdersJSON>(ordersData.Result.JsonRecord[i].ToJson());
-                    orders.Add(orderd);
+                for (int i = 0; i < ordersData.Result.JsonRecord.Count() - 2; i++) {
+                    OrdersJSON order = JsonConvert.DeserializeObject<OrdersJSON>(ordersData.Result.JsonRecord[i].ToJson());
+                    orders.Add(order);
                 }
 
-                OrdersJSON? order = JsonConvert.DeserializeObject<OrdersJSON?>(ordersData.Result.JsonRecord[0].ToJson());
-                if (order != null)
+                if (orders != null)
                     return View(orders);
                 else
                 {
@@ -216,9 +182,7 @@ namespace webApp.Controllers
             }
             catch (AggregateException error) when (error.InnerException is TransferException)
             {
-                Console.WriteLine("\n");
-
-                Console.WriteLine($"{error.Message}");
+                Console.WriteLine($"\n{error.Message}");
                 return View();
             }
         }

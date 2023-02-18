@@ -34,7 +34,7 @@ namespace webApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // находим пользователя 
+                // Поиск пользователя 
                 User? user = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
 
                 if (user != null)

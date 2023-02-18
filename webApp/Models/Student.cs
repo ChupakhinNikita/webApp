@@ -19,10 +19,15 @@
         public string? TuitionForm { get; set; }
 
         public string? TrainingLevel { get; set; }
+
         public string? StudentCondition { get; set; }
+
         public string? Speciality { get; set; }
+
         public string? Specialization { get; set; }
+
         public string? Course { get; set; }
+
         public string? DateTime { get; set; }
     }
 }

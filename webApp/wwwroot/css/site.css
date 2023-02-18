@@ -1,11 +1,4 @@
- /*html {
-    background-color: #96bfe8;
-    background-blend-mode: overlay;
-    font-family: 'Roboto', sans-serif;
-    
-}*/
 /*------------------Minimal CSS Reset-----------------*/
-
 html {
     box-sizing: border-box;
     font-size: 17px;
@@ -298,7 +291,6 @@ nav {
 }
 
 /*------------------footer-----------------*/
-
 footer {
 
     display: flex;

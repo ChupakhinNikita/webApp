@@ -23,7 +23,5 @@ namespace webApp.Models
         public virtual DbSet<Student> Students { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=users;userName=postgres;Password=123456");
-
     }
-
 }
