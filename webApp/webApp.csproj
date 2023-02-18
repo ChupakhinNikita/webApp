@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\TransferLibrary\TransferLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\TransferLibrary\TransferLibrary.csproj" />
+  </ItemGroup>
+
 </Project>
